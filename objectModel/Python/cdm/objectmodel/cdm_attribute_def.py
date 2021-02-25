@@ -37,6 +37,9 @@ class CdmAttribute(CdmObjectDefinition, CdmAttributeItem):
         # Indicates the number of attributes held within this attribute.
         self._attribute_count = 0  # type: int
 
+    def __repr__(self):
+        return f"{type(self).__name__}(name={self.name})"
+
     @property
     def applied_traits(self) -> 'CdmTraitCollection':
         return self._applied_traits

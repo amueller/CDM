@@ -25,6 +25,9 @@ class CdmE2ERelationship(CdmObjectDefinition):
 
         self._TAG = CdmE2ERelationship.__name__
 
+    def __repr__(self):
+        return f"{type(self).__name__}(name={self.relationship_name}, from_entity={self.from_entity}, to_entity={self.to_entity})"
+
     @property
     def object_type(self) -> 'CdmObjectType':
         return CdmObjectType.E2E_RELATIONSHIP_DEF

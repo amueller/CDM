@@ -54,6 +54,9 @@ class CdmEntityDefinition(CdmObjectDefinition, CdmReferencesEntities):
 
         self._TAG = CdmEntityDefinition.__name__
 
+    def __repr__(self):
+        return f"{type(self).__name__}(name={self.entity_name})"
+
     @property
     def attributes(self) -> 'CdmCollection[CdmAttributeItem]':
         """the entity attributes."""
@@ -86,11 +89,11 @@ class CdmEntityDefinition(CdmObjectDefinition, CdmReferencesEntities):
     @display_name.setter
     def display_name(self, val: str) -> None:
         self._trait_to_property_map._update_property_value('displayName', val)
-    
+
     @property
     def extends_entity(self) -> Optional['CdmEntityReference']:
         return self._extends_entity
-    
+
     @extends_entity.setter
     def extends_entity(self, extends_entity: Optional['CdmEntityReference']) -> None:
         if extends_entity:
@@ -742,7 +745,7 @@ class CdmEntityDefinition(CdmObjectDefinition, CdmReferencesEntities):
                             sub_sub_att_ctx = cast('CdmAttributeContext', cr)
                             sub_entity_hint = entity_hint
                             if sub_sub_att_ctx.type == CdmAttributeContextType.ENTITY:
-                                sub_entity_hint = sub_sub_att_ctx.definition.named_reference
+                                sub_entity_hint = getattr(sub_sub_att_ctx.definition, 'named_reference', None)
                             # Do this for all types.
                             fix_context_traits(sub_sub_att_ctx, sub_entity_hint)
 

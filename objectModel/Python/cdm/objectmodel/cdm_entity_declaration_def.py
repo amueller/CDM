@@ -21,6 +21,9 @@ class CdmEntityDeclarationDefinition(CdmObjectDefinition, CdmFileStatus):
         # The entity path.
         self.entity_path = None  # type: Optional[str]
 
+    def __repr__(self):
+        return f"{type(self).__name__}(name={self.entity_name})"
+
     @property
     @abc.abstractmethod
     def data_partitions(self) -> Optional['CdmCollection[CdmDataPartitionDefinition]']:
