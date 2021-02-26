@@ -40,6 +40,10 @@ class CdmObjectReference(CdmObject):
         self._declared_path = None
         self._TAG = CdmObjectReference.__name__
 
+    def __repr__(self):
+        name = self.named_reference or self.get_name()
+        return f"{type(self).__name__}(name={name})"
+
     @property
     def applied_traits(self) -> 'CdmTraitCollection':
         return self._applied_traits
