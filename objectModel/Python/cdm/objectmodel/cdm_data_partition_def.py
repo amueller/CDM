@@ -45,6 +45,9 @@ class CdmDataPartitionDefinition(CdmObjectDefinition, CdmFileStatus):
 
         self._ttpm = TraitToPropertyMap(self)
 
+    def __repr__(self):
+        return f"{type(self).__name__}(name={self.name}, location={self.location})"
+
     @property
     def object_type(self) -> 'CdmObjectType':
         return CdmObjectType.DATA_PARTITION_DEF
